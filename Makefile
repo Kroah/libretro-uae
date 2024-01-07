@@ -310,9 +310,9 @@ HAVE_CHD = 1
 CFLAGS += -std=gnu99 -DINLINE="inline" -D__LIBRETRO__ -MMD
 
 # VFS
-ifneq ($(NO_LIBRETRO_VFS), 1)
-    CFLAGS += -DUSE_LIBRETRO_VFS
-endif
+#ifneq ($(NO_LIBRETRO_VFS), 1)
+#    CFLAGS += -DUSE_LIBRETRO_VFS
+#endif
 
 CXXFLAGS += -DUAE -MMD
 

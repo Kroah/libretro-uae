@@ -8400,10 +8400,11 @@ bool retro_load_game(const struct retro_game_info *info)
    /* Content */
    if (info)
    {
+      log_cb(RETRO_LOG_INFO, "Kroah: info->path: %s\n", info->path);
       /* path_is_valid() requires raw path */
       strlcpy(full_path, info->path, sizeof(full_path));
    }
-   log_cb(RETRO_LOG_INFO, "Kroah: %s\n", full_path);
+   log_cb(RETRO_LOG_INFO, "Kroah: full_path: %s\n", full_path);
 
    log_cb(RETRO_LOG_INFO, "Kroah: 02\n");
 
