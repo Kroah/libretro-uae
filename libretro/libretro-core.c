@@ -6249,6 +6249,8 @@ static bool retro_create_config(void)
    char *tmp_str      = NULL;
    uae_full_config[0] = '\0';
 
+   log_cb(RETRO_LOG_DEBUG, "Kroah: retro_create_config START");
+
    /* Model preset */
    if (!strcmp(opt_model, "auto"))
    {
@@ -7262,6 +7264,8 @@ static bool retro_create_config(void)
    if (tmp_str)
       free(tmp_str);
    tmp_str = NULL;
+
+   log_cb(RETRO_LOG_DEBUG, "Kroah: retro_create_config END (ok)");
 
    return true;
 }
@@ -8367,16 +8371,23 @@ bool retro_load_game(const struct retro_game_info *info)
       }
    }
 
+   log_cb(RETRO_LOG_DEBUG, "Kroah: 01\n");
+
    /* Content */
    if (info)
    {
       /* path_is_valid() requires raw path */
       strlcpy(full_path, info->path, sizeof(full_path));
    }
+   log_cb(RETRO_LOG_DEBUG, "Kroah: %s\n", full_path);
+
+   log_cb(RETRO_LOG_DEBUG, "Kroah: 02\n");
 
    /* UAE config */
    if (!retro_create_config())
       return false;
+
+   log_cb(RETRO_LOG_DEBUG, "Kroah: 03\n");
 
    /* Initialise emulation */
    umain(sizeof(uae_argv)/sizeof(*uae_argv), uae_argv);
