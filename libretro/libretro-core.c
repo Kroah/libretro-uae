@@ -6276,6 +6276,9 @@ static bool retro_create_config(void)
    }
 
    log_cb(RETRO_LOG_INFO, "Kroah: full_path: %s\n", full_path);
+   log_cb(RETRO_LOG_INFO, "Kroah: string_is_empty(full_path):   %s\n", string_is_empty(full_path));
+   log_cb(RETRO_LOG_INFO, "Kroah: path_is_valid(full_path):     %s\n", path_is_valid(full_path));
+   log_cb(RETRO_LOG_INFO, "Kroah: path_is_directory(full_path): %s\n", path_is_directory(full_path));
 
    if (!string_is_empty(full_path) && (path_is_valid(full_path) || path_is_directory(full_path)))
    {
