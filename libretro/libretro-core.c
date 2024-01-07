@@ -7268,6 +7268,7 @@ static bool retro_create_config(void)
    char *token;
    char uae_full_config_temp[UAE_CONFIG_SIZE];
    strlcpy(uae_full_config_temp, uae_full_config, sizeof(uae_full_config_temp));
+   log_cb(RETRO_LOG_INFO, "Kroah: uae_full_config_temp: %s\n", uae_full_config_temp);
    for (token = strtok(uae_full_config_temp, "\n"); token; token = strtok(NULL, "\n"))
    {
       log_cb(RETRO_LOG_DEBUG, "%s\n", token);
