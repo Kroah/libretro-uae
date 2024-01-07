@@ -6266,6 +6266,7 @@ static bool retro_create_config(void)
    char browsed_file[RETRO_PATH_MAX] = {0};
    if (!string_is_empty(full_path) && (strstr(full_path, ".zip#") || strstr(full_path, ".7z#")))
    {
+      log_cb(RETRO_LOG_INFO, "Kroah: Browsed file in ZIP\n");
       char *token = strtok(full_path, "#");
       while (token != NULL)
       {
@@ -6274,13 +6275,17 @@ static bool retro_create_config(void)
       }
    }
 
+   log_cb(RETRO_LOG_INFO, "Kroah: full_path: %s\n", full_path);
+
    if (!string_is_empty(full_path) && (path_is_valid(full_path) || path_is_directory(full_path)))
    {
+      log_cb(RETRO_LOG_INFO, "Kroah: full_path valid START\n");
       /* Extract ZIP for examination */
       if (strendswith(full_path, ".zip")
        || strendswith(full_path, ".7z")
        || strendswith(full_path, ".rp9"))
       {
+         log_cb(RETRO_LOG_INFO, "Kroah: Extract ZIP for examination START\n");
          char zip_basename[RETRO_PATH_MAX] = {0};
          snprintf(zip_basename, sizeof(zip_basename), "%s", path_basename(full_path));
          path_remove_extension(zip_basename);
@@ -6386,6 +6391,7 @@ static bool retro_create_config(void)
                log_cb(RETRO_LOG_INFO, "->M3U: %s\n", zip_m3u_path);
                break;
          }
+         log_cb(RETRO_LOG_INFO, "Kroah: Extract ZIP for examination END\n");
       }
 
       /* Inspect M3U */
@@ -6402,6 +6408,8 @@ static bool retro_create_config(void)
        || m3u == DC_IMAGE_TYPE_HD
        || m3u == DC_IMAGE_TYPE_WHDLOAD)
       {
+         log_cb(RETRO_LOG_INFO, "Kroah: Floppy disk, hard drive, WHDLoad or playlist START\n");
+         log_cb(RETRO_LOG_INFO, "Kroah: dc_get_image_type(%s) == %s\n", full_path, dc_get_image_type(full_path));
          /* Check if model is specified in the path on 'Automatic' */
          if (!strcmp(opt_model, "auto"))
          {
@@ -6481,8 +6489,12 @@ static bool retro_create_config(void)
             }
          }
 
+         log_cb(RETRO_LOG_INFO, "Kroah: retro_config_append\n");
+         
          /* Write model preset */
          retro_config_append(uae_model);
+
+         log_cb(RETRO_LOG_INFO, "Kroah: retro_config_kickstart\n");
 
          /* Verify and write Kickstart */
          retro_config_kickstart();
@@ -6497,6 +6509,7 @@ static bool retro_create_config(void)
           || m3u == DC_IMAGE_TYPE_HD
           || m3u == DC_IMAGE_TYPE_WHDLOAD)
          {
+            log_cb(RETRO_LOG_INFO, "Kroah: Hard drive or WHDLoad image\n");
             /* M3U playlist */
             if (strendswith(full_path, "m3u"))
             {
@@ -6535,9 +6548,12 @@ static bool retro_create_config(void)
                display_current_image(dc->labels[0], true);
             }
 
+            log_cb(RETRO_LOG_INFO, "Kroah: opt_use_whdload == %s\n", opt_use_whdload);
+
             /* WHDLoad support */
             if (opt_use_whdload)
             {
+               log_cb(RETRO_LOG_INFO, "Kroah: WHDLoad support\n");
                /* Manipulate WHDLoad.prefs */
                int WHDLoad_ConfigDelay = 0;
                int WHDLoad_SplashDelay = 0;
@@ -6960,6 +6976,7 @@ static bool retro_create_config(void)
 
          /* Write common config */
          retro_config_append(uae_config);
+         log_cb(RETRO_LOG_INFO, "Kroah: Floppy disk, hard drive, WHDLoad or playlist END\n");
       }
       /* CD image */
       else if (dc_get_image_type(full_path) == DC_IMAGE_TYPE_CD
@@ -7188,6 +7205,7 @@ static bool retro_create_config(void)
          snprintf(retro_message_msg, sizeof(retro_message_msg), "Unsupported file format: '%s'", path_get_extension(full_path));
          retro_message = true;
       }
+      log_cb(RETRO_LOG_INFO, "Kroah: full_path valid END\n");
    }
    /* Empty content */
    else
