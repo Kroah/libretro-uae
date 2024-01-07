@@ -7213,6 +7213,7 @@ static bool retro_create_config(void)
    /* Empty content */
    else
    {
+      log_cb(RETRO_LOG_INFO, "Kroah: Empty content\n");
       /* Write model preset */
       retro_config_append(uae_model);
 
@@ -7231,6 +7232,7 @@ static bool retro_create_config(void)
    /* Iterate global config file and append all rows to the temporary config */
    char configfile_global_path[RETRO_PATH_MAX];
    path_join(configfile_global_path, retro_save_directory, LIBRETRO_PUAE_PREFIX "_global.uae");
+   log_cb(RETRO_LOG_INFO, "Kroah: configfile_global_path: %s\n", configfile_global_path);
    if (path_is_valid(configfile_global_path))
    {
       log_cb(RETRO_LOG_INFO, "Appending global configuration: '%s'\n", configfile_global_path);
@@ -7286,7 +7288,7 @@ static bool retro_create_config(void)
       free(tmp_str);
    tmp_str = NULL;
 
-   log_cb(RETRO_LOG_INFO, "Kroah: retro_create_config END (ok)\n");
+   log_cb(RETRO_LOG_INFO, "Kroah: retro_create_config END (true)\n");
 
    return true;
 }
