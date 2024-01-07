@@ -6249,7 +6249,7 @@ static bool retro_create_config(void)
    char *tmp_str      = NULL;
    uae_full_config[0] = '\0';
 
-   log_cb(RETRO_LOG_DEBUG, "Kroah: retro_create_config START");
+   log_cb(RETRO_LOG_DEBUG, "Kroah: retro_create_config START\n");
 
    /* Model preset */
    if (!strcmp(opt_model, "auto"))
@@ -7265,7 +7265,7 @@ static bool retro_create_config(void)
       free(tmp_str);
    tmp_str = NULL;
 
-   log_cb(RETRO_LOG_DEBUG, "Kroah: retro_create_config END (ok)");
+   log_cb(RETRO_LOG_DEBUG, "Kroah: retro_create_config END (ok)\n");
 
    return true;
 }
