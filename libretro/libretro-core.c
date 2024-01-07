@@ -6276,9 +6276,9 @@ static bool retro_create_config(void)
    }
 
    log_cb(RETRO_LOG_INFO, "Kroah: full_path: %s\n", full_path);
-   log_cb(RETRO_LOG_INFO, "Kroah: string_is_empty(full_path):   %s\n", string_is_empty(full_path));
-   log_cb(RETRO_LOG_INFO, "Kroah: path_is_valid(full_path):     %s\n", path_is_valid(full_path));
-   log_cb(RETRO_LOG_INFO, "Kroah: path_is_directory(full_path): %s\n", path_is_directory(full_path));
+   log_cb(RETRO_LOG_INFO, "Kroah: string_is_empty(full_path):   %d\n", string_is_empty(full_path));
+   log_cb(RETRO_LOG_INFO, "Kroah: path_is_valid(full_path):     %d\n", path_is_valid(full_path));
+   log_cb(RETRO_LOG_INFO, "Kroah: path_is_directory(full_path): %d\n", path_is_directory(full_path));
 
    if (!string_is_empty(full_path) && (path_is_valid(full_path) || path_is_directory(full_path)))
    {
@@ -6412,7 +6412,7 @@ static bool retro_create_config(void)
        || m3u == DC_IMAGE_TYPE_WHDLOAD)
       {
          log_cb(RETRO_LOG_INFO, "Kroah: Floppy disk, hard drive, WHDLoad or playlist START\n");
-         log_cb(RETRO_LOG_INFO, "Kroah: dc_get_image_type(%s) == %s\n", full_path, dc_get_image_type(full_path));
+         log_cb(RETRO_LOG_INFO, "Kroah: dc_get_image_type(%s) == %d\n", full_path, dc_get_image_type(full_path));
          /* Check if model is specified in the path on 'Automatic' */
          if (!strcmp(opt_model, "auto"))
          {
@@ -6551,7 +6551,7 @@ static bool retro_create_config(void)
                display_current_image(dc->labels[0], true);
             }
 
-            log_cb(RETRO_LOG_INFO, "Kroah: opt_use_whdload == %s\n", opt_use_whdload);
+            log_cb(RETRO_LOG_INFO, "Kroah: opt_use_whdload == %d\n", opt_use_whdload);
 
             /* WHDLoad support */
             if (opt_use_whdload)
